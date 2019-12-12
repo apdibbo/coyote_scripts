@@ -1,0 +1,64 @@
+{
+"softcorebuffer": 400,
+"hardcorebuffer": 100,
+"staticpartition": 1200,
+"largeHypervisorCores": 60,
+"smallHypervisorCores":8,
+"emptyHVBuffer": 4,
+"staticFlavor": "l1.6xl",
+"opportunisticFlavor": "c1.xxlarge",
+"vwnStaticNamePrefix": "vwn-static",
+"vwnOpportunisticNamePrefix": "vwn-opp",
+"vwnImageName": "vwn-2019-08-06-03",
+"networkName": "Internal",
+"availabilityZone": "ceph",
+"configDrive": true,
+"userDataPath": "/home/coyote/vwn-cloud-init.yaml",
+"coyoteKeyPair": "coyote",
+"coyotePrivateKeyPath": "/home/coyote/.ssh/id_rsa",
+"coyoteRemoteUser": "coyote",
+"jsonTrackingFile": "/home/coyote/vwntracking.json",
+"metadata": {
+    "AQ_OSNAME":"sl", 
+    "AQ_OSVERSION":"7x-x86_64", 
+    "AQ_ARCHETYPE":"ral-tier1", 
+    "AQ_PERSONALITY":"workernode-virtual",
+    "AQ_SANDBOX":"wjc16017/workernode-virtual"
+},
+"aggregates": {
+    "2015-CPU": {
+        "16":"m2.xlarge", 
+        "8" :"m1.xlarge"
+    }, 
+    "2016-gpu": {
+        "60":"g-p100.xlarge"
+    },
+    "2017-ukt0": {
+        "60": "c1.6xl",
+        "28": "c1.4xl", 
+        "16": "c3.xlarge",
+        "8" : "c2.large"
+    },
+    "2018-alc-gpu-p11": {
+        "60":"g-p100.xlarge"
+    },
+    "2018-alc-gpu-p4000":{
+        "60":"g-p100.xlarge"
+    },
+    "2014-cpu":{
+        "16": "m2.xlarge" ,
+        "8": "m1.xlarge"
+    },
+    "2018-iris-cpu":{
+        "60":"c1.6xl",
+        "28": "c1.4xl",
+        "16": "c3.xlarge",
+        "8":  "c2.large"
+    },
+    "2018-iris-cpu-localdisk": {
+        "60": "l1.6xl"
+    }
+},
+"coyoteRCPath": "/home/coyote/condor-openrc.sh",
+"sourcecmd": "source /home/coyote/condor-openrc.sh;"
+}
