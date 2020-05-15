@@ -113,6 +113,8 @@ print("Condor Used Cores: " + str(usedcores))
 
 novacomputeservices = json.loads(command_line("openstack compute service list -f json"))
 
+hypervisors = json.loads(command_line("openstack hypervisor list --long -f json"))
+
 aggregateGroupsListPre = json.loads(command_line("openstack aggregate list --long -f json"))
 aggregateGroupsList = {}
 for aggregateGroup in aggregateGroupsListPre:
@@ -145,17 +147,13 @@ for aggregateGroup in aggregateGroupsListPre:
     # calculate vcpu's
     uphosts = []
     for host in aggregateGroupDetails["hosts"]:
-        try:
-            hvDetails = json.loads(command_line("openstack hypervisor show " + host + " -f json"))
-            if hvDetails["state"] == "up":
-                uphosts.append(host)
-        except:
-            print("Cannot find hypervisor details for: {}".format(host))
-
-    for novaservice in novacomputeservices:
-        if novaservice["Host"] in uphosts and novaservice["Status"] == "enabled":
-            totalCoresAvailable += hvDetails["vcpus"]
-            totalCoresUsed += hvDetails["vcpus_used"]
+        for novaservice in novacomputeservices:
+            if novaservice["Status"] == "enabled" and novaservice["Host"] == host:
+                for hv in hypervisors:
+                    if hv["Hypervisor Hostname"] == novaservice["Host"]:
+                        print["hv matched"]
+                        totalCoresAvailable += hv["vCPUs"]
+                        totalCoresUsed += hv["vCPUs Used"]
 
     # calculate buffers specifically for each aggregate
     availablecores = totalCoresAvailable - totalCoresUsed
