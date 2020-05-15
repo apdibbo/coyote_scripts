@@ -50,7 +50,7 @@ def command_line(c):
 def delete_errored_vm():
     # Check for virtual worker nodes which are down or errored and remove
     for node in nodelist:
-        if "vwn" in node["Name"]:
+        if vwnStaticNamePrefix in node["Name"]:
             ip_address = ""
             try:
                 ip_address = node["Networks"].split("=")[1]
